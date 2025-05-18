@@ -2,7 +2,7 @@
 
 ## 事前準備
 
-aws マネジメントコンソールの SecretManager で db 認証情報を作成する
+aws マネジメントコンソールの SecretManager から db の認証情報を作成する
 
 ```
 key: rds/admin
@@ -16,7 +16,7 @@ password: \*\***
 npx cdk deploy --all
 ```
 
-## db クライアントツールから RDS に接続
+## クライアントツールから RDS へ接続
 
 ```bash
 # aws sso
@@ -41,4 +41,11 @@ user: *****
 password: *****
 database: *****
 port: 15432
+```
+
+### 読み取り専用ユーザーの作成
+
+```
+CREATE USER readonly_user WITH PASSWORD 'P@ssw0rd123!';
+GRANT SELECT ON ALL TABLES IN SCHEMA public TO readonly_user;
 ```
